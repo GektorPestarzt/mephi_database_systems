@@ -33,4 +33,3 @@ SELECT DISTINCT uk.username, count(*)
 FROM users_lists_of_kanjis AS uk
 JOIN lists_kanjis AS lk ON lk.list_id = uk.list_id
 GROUP BY uk.username;
-
