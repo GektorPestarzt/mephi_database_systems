@@ -1,0 +1,13 @@
+name: db_lab4
+
+services:
+  postgres:
+    image: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_DB=db_lab4
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    volumes:
+      - ./scripts:/docker-entrypoint-initdb.d
