@@ -92,4 +92,4 @@ JOIN
     FROM kanjis
 ) AS kanjis ON kanjis.kanji = words_kanjis.kanji
 GROUP BY lists_of_words.id
-ORDER BY avg_strokes
+ORDER BY avg_strokes;
