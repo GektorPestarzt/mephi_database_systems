@@ -80,3 +80,19 @@ AND word IN (
     FROM kanjis
 );
 
+
+SELECT lists_of_words.id AS table_id,
+       lists_of_words.table_name,
+       COUNT(words_kanjis.kanji) AS count_kanjis,
+       SUM(kanjis.strokes) AS sum_strokes,
+       ROUND(AVG(kanjis.strokes),1) AS avg_strokes
+FROM lists_of_words
+JOIN lists_words ON lists_of_words.id = lists_words.list_id
+JOIN words_kanjis ON lists_words.word = words_kanjis.word
+JOIN
+(
+    SELECT kanji, strokes
+    FROM kanjis
+) AS kanjis ON kanjis.kanji = words_kanjis.kanji
+GROUP BY lists_of_words.id
+ORDER BY avg_strokes
