@@ -5,7 +5,7 @@ WHERE kanji IN
     SELECT kanji
     FROM lists_kanjis
     WHERE list_id = 1
-)
+);
 
 
 SELECT words_kanjis.word, sum(kanjis.strokes) AS strokes
@@ -71,14 +71,11 @@ JOIN
 ) AS str ON ul.id = str.list_id;
 
 
-SELECT word
+SELECT words .* , kanjis .*
 FROM words_kanjis
-WHERE LENGTH(word) = 1
-JOIN kanjis ON kanjis.kanji = words_kanjis.kanji
-AND word IN (
-    SELECT kanji
-    FROM kanjis
-);
+JOIN kanjis ON words_kanjis . kanji = kanjis . kanji
+JOIN words ON words . word = words_kanjis . word
+WHERE LENGTH ( words_kanjis . word ) = 1;
 
 
 SELECT lists_of_words.id AS table_id,
