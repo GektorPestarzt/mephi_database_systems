@@ -92,4 +92,10 @@ JOIN
     FROM kanjis
 ) AS kanjis ON kanjis.kanji = words_kanjis.kanji
 GROUP BY lists_of_words.id
-ORDER BY avg_strokes
+ORDER BY avg_strokes;
+
+SELECT lists_kanjis.list_id, (10+2*SUM(kanjis.strokes)-1)/30+1 AS days                 
+FROM lists_kanjis
+JOIN kanjis ON kanjis.kanji = lists_kanjis.kanji
+GROUP BY lists_kanjis.list_id
+ORDER BY lists_kanjis.list_id;
