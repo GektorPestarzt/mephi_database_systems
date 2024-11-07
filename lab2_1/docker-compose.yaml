@@ -1,0 +1,19 @@
+name: japanese_db
+
+services:
+  postgres:
+    image: postgres
+    ports:
+      - "5432:5432"
+    env_file:
+      - ./.env
+    environment:
+      - POSTGRES_DB=japanese_db
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - ADMIN_PASSWORD=${ADMIN_PASSWORD}
+      - DEVELOPER_PASSWORD=${DEVELOPER_PASSWORD}
+      - CONTENT_CREATOR_PASSWORD=${CONTENT_CREATOR_PASSWORD}
+      - CONTENT_USER_PASSWORD=${CONTENT_USER_PASSWORD}
+    volumes:
+      - ./scripts:/docker-entrypoint-initdb.d
